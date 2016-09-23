@@ -22,8 +22,7 @@ def cleanUp(L):
             L[w] = L[w].split( ',' )
     return L
 
-def convertToDictionary(fileName):
-    L = cleanUp(importCSV(fileName))
+def convertToDictionary(L):
     #print L
     D = dict()
     for subL in L:
@@ -33,10 +32,12 @@ def convertToDictionary(fileName):
     return D
 
 @app.route("/occupations")
-D = convertToDictionary("occupations.csv")
-
 def makeHTML():
-    return render_template( 'template.html', title="Occupations List", collection = D )
+    L = cleanUp(importCSV("occupations.csv"))
+    h1 = L[0][0]
+    h2 = L[0][1]
+    D = convertToDictionary(L[1:])
+    return render_template( 'template.html', title="Occupations List", header1 = h1, header2 = h2, collection = D )
 
 @app.route("/") #assign following fxn to run when root route requested
 def intro():

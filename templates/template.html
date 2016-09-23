@@ -4,15 +4,30 @@
   <head>
     <title> {{ title  }} </title>
     <style>
-      body { text-align: center; }
+      body { 
+        text-align: center;
+      }
+      table {
+        margin-left: auto;
+        margin-right: auto;
+      }
+      td {
+        padding: 3px 8px;
+      }
     </style>
   </head>
   <body>
+    <table border="1">
+    <tr>
+      <td><b>{{ header1 }}</b></td>
+      <td><b>{{ header2 }}</b></td>
+    </tr>
     {% for item in collection %}
      <tr>
        <td>{{ item }}</td>
        <td>{{ collection[item] }}</td>
      </tr>
     {% endfor %}
+   </table>
   </body>
 </html>
