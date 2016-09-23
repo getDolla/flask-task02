@@ -36,8 +36,7 @@ def makeHTML():
     L = cleanUp(importCSV("occupations.csv"))
     h1 = L[0][0]
     h2 = L[0][1]
-    D = convertToDictionary(L[1:])
-    return render_template( 'template.html', title="Occupations List", header1 = h1, header2 = h2, collection = D )
+    return render_template( 'template.html', title="Occupations List", header1 = h1, header2 = h2, collection = L[1:] )
 
 @app.route("/") #assign following fxn to run when root route requested
 def intro():
