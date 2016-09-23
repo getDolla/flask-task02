@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <title> {{ title  }} </title>
+    <style>
+      body { text-align: center; }
+    </style>
+  </head>
+  <body>
+    {% for item in collection %}
+     <tr>
+       <td>{{ item }}</td>
+       <td>{{ collection[item] }}</td>
+     </tr>
+    {% endfor %}
+  </body>
+</html>
