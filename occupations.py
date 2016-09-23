@@ -1,6 +1,7 @@
 #Yikai Wang
 #Period 6 SoftDev
 
+import random
 from flask import Flask, render_template
 app = Flask(__name__) #create Flask object
 
@@ -31,12 +32,26 @@ def convertToDictionary(L):
         D[subL[0]] = subL[1]
     return D
 
+def randChooser(D):
+    x = random.randrange(998)
+    sumLast = 0
+    
+    for i in D:
+        #print x
+        #print float(D[i])*10
+        #print sumLast
+        sumLast = sumNow = sumLast + (float(D[i])*10)
+        if ( x < sumNow ):
+            return i
+
 @app.route("/occupations")
 def makeHTML():
     L = cleanUp(importCSV("occupations.csv"))
     h1 = L[0][0]
     h2 = L[0][1]
-    return render_template( 'template.html', title="Occupations List", header1 = h1, header2 = h2, collection = L[1:] )
+    D = convertToDictionary(L[1:len(L)-1])
+    rj = randChooser(D).lower()
+    return render_template( 'template.html', title="Occupations List", header1 = h1, header2 = h2, collection = L[1:], job = rj )
 
 @app.route("/") #assign following fxn to run when root route requested
 def intro():
